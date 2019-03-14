@@ -1,4 +1,16 @@
-//Import libary
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+
+export default class HelloWorldApp extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Mr.Apisak Kairkhachonbamrung 6002041520182</Text>
+      </View>
+    );
+  }
+}
+/*//Import libary
 import React from 'react';
 import { View, Text } from 'react-native';
 
@@ -7,7 +19,7 @@ class App extends React.Compenent {
     render() {
         return(
             <View>
-                <Text>HELLO WORLD !!!</Text>
+                <Text>Mr.Apisak Kairkhachonbamrung 6002041520182</Text>
             </View>
             //Component
         );
@@ -15,3 +27,4 @@ class App extends React.Compenent {
 }
 //Export
 export default App;
+*/

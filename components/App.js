@@ -5,7 +5,7 @@ export default class HelloWorldApp extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Mr.Apisak Kairkhachonbamrung 6002041520182</Text>
+        <Text>Mr.Apisak Kairkhachonbamrung #TCT-RA27 GGEZ</Text>
       </View>
     );
   }

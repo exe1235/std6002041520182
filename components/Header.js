@@ -26,6 +26,7 @@ const style = {
     text: {
         fontSize: 25,
         alignItems: "center",
+        margin: 20
     }
 }
 

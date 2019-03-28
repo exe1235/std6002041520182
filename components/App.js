@@ -7,8 +7,8 @@ export default class HelloWorldApp extends Component {
     return (
       <View>
         <Header title="Albums"></Header>
+        <Text style = {{ paddingLeft: 10}}>Mr.Apisak Kairkhachonbamrung #TCT-RA27 GGEZ</Text>
         <Card />
-        <Text>Mr.Apisak Kairkhachonbamrung #TCT-RA27 GGEZ</Text>
       </View>
     );
   }

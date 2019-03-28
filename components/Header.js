@@ -18,15 +18,14 @@ const style = {
     header: {
         padding: 5,        
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
     view: {
         flex: 1,
     },
     text: {
         fontSize: 25,
-        justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     }
 }
 

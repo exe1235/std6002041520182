@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import Header from './Header.js';
+import Card from './Card.js';
 export default class HelloWorldApp extends Component {
   render() {
     return (
       <View>
         <Header title="Albums"></Header>
+        <Card />
         <Text>Mr.Apisak Kairkhachonbamrung #TCT-RA27 GGEZ</Text>
       </View>
     );

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-
+import Header from './Header.js';
 export default class HelloWorldApp extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View>
+        <Header title="Albums"></Header>
         <Text>Mr.Apisak Kairkhachonbamrung #TCT-RA27 GGEZ</Text>
       </View>
     );

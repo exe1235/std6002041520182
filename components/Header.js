@@ -6,11 +6,29 @@ import { View, Text } from 'react-native';
 class Header extends Component {
     render() {
         return (
-            <View>
-                <Text>{this.props.title}</Text>
+            <View style={style.header}>
+                <Text style={style.text}>{this.props.title}</Text>
             </View>        
         );
     }
 }
+
+//style
+const style = {
+    header: {
+        padding: 5,        
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    view: {
+        flex: 1,
+    },
+    text: {
+        fontSize: 25,
+        justifyContent: "center",
+        alignItems: "center"
+    }
+}
+
 // export
 export default Header;

@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import Header from './Header.js';
-import Card from './Card.js';
-import Login from './Login.js';
-export default class HelloWorldApp extends Component {
-  render() {
-    return (
-      <View>
-        <Header title="- LOGIN -"></Header>
-        <Login />
-        
-      </View>
-    );
-  }
-}
 /*
-<Text style = {{ paddingLeft: 10}}>Mr.Apisak Kairkhachonbamrung #TCT-RA27 GGEZ 62</Text>
-*/
-/*//Import libaryß
 import React from 'react';
 import { View, Text } from 'react-native';
+import Header from './Header';
+*/
+// import Card from './Card';
+import Login from './Login';
+import Me from './Me';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-//Write component
-class App extends React.Compenent {
+
+/*
+export default class App extends React.Component {
     render() {
-        return(
+        return (
             <View>
-                <Text>Mr.Apisak Kairkhachonbamrung 6002041520182</Text>
+                <Header name="อัลบั้ม" />
+                <View style={{ marginTop: 20 }}>
+                    <Card />
+                </View>
             </View>
-            //Component
         );
     }
 }
-//Export
-export default App;
 */
+
+const AppNavigator = createStackNavigator(
+    {
+        Login: Login,
+        Me: Me
+    }, {
+        // initialRouteName: "Login"
+        initialRouteName: "Me"
+    }
+);
+
+export default createAppContainer(AppNavigator);

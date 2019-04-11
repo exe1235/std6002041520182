@@ -1,56 +1,92 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
-class Login extends Component {
-    constructor(props){
-        super();
-        this.state = {
-            email: '',
-            password: ''
-        }
-        this.onChangeEmail = this.onChangeEmail.bind(this)
-        this.onChangePass = this.onChangePass.bind(this)
-    }
-    onChangeEmail(e){
-        console.log('onChangeEmail',e)
-        this.setState({ email: e})
-    }
-    onChangePass(e){
-        console.log('onChangePass',e)
-        this.setState({ password: e})
-    }
-    onPress(){
-        console.log(this.state)
-        const url = 'http://128.199.240.120:9999/api/auth/login'
-        axios.post(url, this.state)
-            .then(response => {
-                console.log('login', response.data.data.token)
-            })
-    }
-    render() { 
-        return (
-                <View style = {{ padding: 20 }}>
-                        <TextInput 
-                            style={{ height: 40, fontSize: 20, padding: 10 }}
-                            placeholder="Enter E-mail"
-                            value = {this.state.email}
-                            onChangeText = {this.onChangeEmail}
-                        />
-                        <TextInput 
-                            secureTextEntry
-                            style={{ height: 40, fontSize: 20, padding: 10 }}
-                            placeholder="Enster Password"
-                            value = {this.state.password}
-                            onChangeText = {this.onChangePass}
-                        />
-                        <Button 
-                            title="LOGIN"
-                            onPress = {this.onPress.bind(this)}
-                        />
-                </View>
-        );
+let style = {
+    input: {
+        fontSize: 18, 
+        borderBottomColor: "#CCC", 
+        borderBottomWidth: 2,
+        marginBottom: 20
     }
 }
 
-export default Login;
+export default class Login extends React.Component {
+    static navigationOptions = {
+        title: "Apisak K.",
+        headerStyle: {
+            backgroundColor: "#33CC00",
+        },
+        headerTintColor: "#FFF",
+    };
+    
+    constructor() {
+        super();
+
+        this.state = {
+            email: "",
+            password: "" 
+        };
+    }
+
+    async componentDidMount() {
+        try {
+            if (await AsyncStorage.getItem("login_token") !== null) {
+                this.props.navigation.navigate("Me");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    goLogin() {
+        axios.post("http://128.199.240.120:9999/api/auth/login", {
+            email: this.state.email,
+            password: this.state.password
+        }).then(async function (response) {
+            // alert("Logined !");
+
+            console.log(response.data.data.token);
+            try {
+                await AsyncStorage.setItem("login_token", response.data.data.token);
+            } catch (error) {
+                alert("Save token error !");
+                return;
+            }
+
+            this.props.navigation.navigate("Me");
+        }.bind(this))
+        .catch(function (error) {
+            alert("Enter Email or Password agian !!");
+
+            console.log(error);
+        });
+    }
+
+    render() {
+        return (
+            <View style={{ paddingTop: 20 }}>
+                <Text style={{ textAlign: "center", fontSize: 28, color: "#33CC00" }}>- LOGIN -</Text>
+                <View style={{ padding: 20 }}>
+                    <TextInput
+                        placeholder="Enter - Email"
+                        onChangeText={(text) => this.setState({ email: text })}
+                        value={this.state.email}
+                        style={style.input}
+                    />
+
+                    <TextInput
+                        placeholder="Enter - Password"
+                        onChangeText={(text) => this.setState({ password: text })}
+                        value={this.state.password}
+                        style={style.input}
+                        secureTextEntry
+                    />
+
+                    <Button title="Login" onPress={this.goLogin.bind(this)} />
+                </View>
+            </View>
+        );
+    }
+}
